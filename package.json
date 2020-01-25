@@ -1,0 +1,19 @@
+{
+  "name": "AdressBookChallenge",
+  "version": "1.0.0",
+  "description": "An adress book application",
+  "main": "src/app.js",
+  "repository": "https://github.com/emtalen/adress_book_challenge",
+  "author": "Emma Thalen",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^3.8.3"
+  },
+  "dependencies": {
+    "superstatic": "^6.0.4"
+  },
+  "scripts": {
+    "start": "superstatic src --port 3001",
+    "cy:open": "yarn start & cypress open"
+  }
+}
