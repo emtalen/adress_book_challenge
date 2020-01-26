@@ -8,6 +8,7 @@ describe ('user can create a contact', () => {
         cy.get('#company').type('Craf Academy')
         cy.get('#notes').type('Awesome coder')
         cy.get('#twitter').type('@thomasochman')
+        cy.get('#submit').click()
 
     })
 })
