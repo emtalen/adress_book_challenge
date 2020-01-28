@@ -11,47 +11,49 @@ const renderContacts = () => {
         contacts.forEach(contact => {
             let li = document.createElement('li')
 
-            li.innerHTML = `
+            li.innerHTML = 
             <span>${contact.name}</span> |
             <span>${contact.email}</span> |
             <span>${contact.phone}</span> |
             <span>${contact.company}</span> |
             <span>${contact.notes}</span> |
-            <span>${contact.twitter}</span> 
-        `
+            <span>${contact.twitter}</span> |
+        
         ul.appendChild(li)
     })
     div.appendChild(ul)
     } else {
-        div.innerHTML = '<p>You have no contacts in your address book'
+        div.innerHTML = '<p>You have no contacts in your address book</p>'
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderContacts()
-    const contactForm = document.getElementById('new-contact-form')
-    contactForm.addEventListener('submit', event => {
-        event.preventDefault()
+	renderContacts()
+	const  contactForm = document.getElementById('new-contact-form')
+	contactForm.addEventListener('submit', event  => {
+		event.preventDefault()
 
-        const { name, email, phone, company, notes, twitter } = contactForm.elements
+		// 1. Read all the input fields and get their values
+		const { name, email, phone, company, notes, twitter } = contactForm.elements
 
-        const contact = {
-            name: name.value,
-            email: email.value,
-            phone: phone.value,
-            company: company.value,
-            notes: notes.value,
-            twitter: twitter.value,
-        }
+		const  contact = {
+			name:  name.value,
+			email:  email.value,
+			phone:  phone.value,
+			company:  company.value,
+			notes:  notes.value,
+			twitter:  twitter.value,
+		}
 
-        console.log(contact)
+		console.log(contact)
 
-        let contacts = JSON.parse(storage.getItem('contacts')) || []
-        
-        contacts.push(contact)
+		let  contacts = JSON.parse(storage.getItem('contacts')) || []
 
-        storage.setItem('contacts', JSON.stringify(contacts))
-        renderContacts()
-        contactForm.reset()
-    })
+		contacts.push(contact)
+
+		// 2. Save them to our storage
+		storage.setItem('contacts', JSON.stringify(contacts))
+		renderContacts()
+		contactForm.reset()
+   })
 })
