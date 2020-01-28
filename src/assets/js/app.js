@@ -6,19 +6,19 @@ const renderContacts = () => {
     let div = document.querySelector('#contact-list')
     if (contacts) {
         div.innerHTML = ''
-        const ul = document.createElement('ul)')
+        const ul = document.createElement('ul')
         
         contacts.forEach(contact => {
             let li = document.createElement('li')
 
-            li.innerHTML = 
+            li.innerHTML = `
             <span>${contact.name}</span> |
             <span>${contact.email}</span> |
             <span>${contact.phone}</span> |
             <span>${contact.company}</span> |
             <span>${contact.notes}</span> |
             <span>${contact.twitter}</span> |
-        
+        `
         ul.appendChild(li)
     })
     div.appendChild(ul)
