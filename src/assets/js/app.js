@@ -12,17 +12,12 @@ const renderContacts = () => {
             let li = document.createElement('li')
 
             li.innerHTML = `
-            <span>${contact.name}
-                <ul>
-                <li>${contact.email}</li>
-                <li>${contact.phone}</li>
-                <li>${contact.company}</li>
-                <li>${contact.notes}</li>
-                <li>${contact.twitter}</li>
-                </ul>
-                </span> 
-            <button id="edit">Edit</button> |
-            <button id="remove">Remove</button>
+            <span>${contact.name}</span> |
+            <span>${contact.email}</span> |
+            <span>${contact.phone}</span> |
+            <span>${contact.company}</span> |
+            <span>${contact.notes}</span> |
+            <span>${contact.twitter}</span> |
         `
         ul.appendChild(li)
     })
@@ -75,4 +70,11 @@ contactForm.addEventListener('submit', event  => {
    })
 })
 
+function removeAll() {
+        contactList = document.getElementById('#contact-list')
+        localStorage.clear();
+        contactList.style.display = ''
+
+        console.log
+}
 
