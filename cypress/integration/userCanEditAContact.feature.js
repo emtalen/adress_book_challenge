@@ -1,5 +1,5 @@
-describe ('user can create a contact', () => {
-    beforeEach('test', () => { 
+describe ('update a contact', () => {
+    before(() => {
         cy.visit('http://localhost:3001')
         cy.get('#add-contact').click()
         cy.get('#name').type('Emma')
@@ -9,12 +9,14 @@ describe ('user can create a contact', () => {
         cy.get('#notes').type('Struggling noob coder')
         cy.get('#twitter').type('@emma')
         cy.get('#submit').click()
-
+        
     })
-    beforeEach('displays a name of a new contact', () => {
-        cy.get('#contact-list').should('contain', 'Thomas')
-    })
-    beforeEach('displays a phone number of the new contact', () => {
-        cy.get('#contact-list').should('contain', '0700 101010')
+    it('by changing data and saving it', () => {
+        cy.get('#update-button').click()
+        cy.get('#new-contact-form').within(() => {
+            cy.get('#name').clear().type('Daniel')
+            cy.get('#email').clear().type('daniel@mail.com')
+            cy.get('#submit').click()
+        })
     })
 })
