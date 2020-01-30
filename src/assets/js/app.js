@@ -10,7 +10,7 @@ const deleteContact = (toRemove) => {
 }
 
 const displayUpdateFields = (id) => {
-    let contacts = JSON.parse(storage.getItem('contacts'))
+    let contacts = JSON.parse(localstorage.getItem('contacts'))
     let contactToUpdate = contacts[id]
     let form = document.getElementById('new-contact-form')
     let indexField = document.createElement('input')
@@ -37,38 +37,39 @@ const updateContact = (toRemove) => {
 
 const renderContacts = () => {
     const contacts = JSON.parse(storage.getItem('contacts'))
-   
-    let div = document.querySelector('#contact-list')
+    let div = document.getElementById('contact-list')
     if (contacts) {
         div.innerHTML = ''
         i = 0
-        const ul = document.createElement('ul')
-        
         contacts.forEach(contact => {
-        let  li = document.createElement('li')
-
-		li.innerHTML = `
-		  <span>${contact.name}</span> |
-		  <span>${contact.email}</span> |
-          <span>${contact.phone}</span> |
-          <span>${contact.company}</span> |
-          <span>${contact.notes}</span> |
-          <span>${contact.twitter}</span> |
-          <button id="delete-button" onclick=deleteContact('${i}')>Delete</button>
-          <button id="update-button" onclick=updateContact('${i}')>Update</button>
-	    `
-        ul.appendChild(li)
-
-        i++;
-    })
-    div.appendChild(ul)
-
-
-    }else {
-        div.innerHTML = '<p>You have no contacts in your address book</p>'
+			var newDiv = document.createElement("div");
+			newDiv.classList.add("contact-card");
+			newDiv.innerHTML =
+				`
+				<div class="contact-name">${contact.name}</div>
+				<div class="contact-email">${contact.email}</div>
+				<div class="contact-phone">${contact.phone}</div>
+				<div class="contact-company">${contact.company}</div>
+				<div class="contact-notes">${contact.notes}</div>
+				<div class="contact-twitter">@${contact.twitter}</div>
+				<input type="button" value="Update" id="update-button" onclick="updateContact(${i})"/>
+				<input type="button" value="Delete" id="delete-button" onclick="deleteContact(${i})"/>
+				`
+			div.appendChild(newDiv)
+			i++;
+		})
+	} else {
+        div.innerHTML = '<p>You have no contacts in your address book</p>'    
     }
 }
 
+const toggleFormVisibility = (contactForm) => {
+	if (contactForm.style.display === '') {
+		contactForm.style.display = 'none'
+	} else {
+		contactForm.style.display = ''
+	}
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 	renderContacts()
@@ -76,25 +77,19 @@ const  contactForm = document.getElementById('new-contact-form')
     const toggleFormVisibilityButton = document.getElementById('add-contact')
     contactForm.style.display= 'none'
 
-    toggleFormVisibilityButton.addEventListener('click' () => {
-        if (contactForm.style.display === '') {
-            contactForm.style.display = 'none'
-        } else {
-            contactForm.style.display = ''
-        }
-    })
+    toggleFormVisibilityButton.addEventListener('click', toggleFormVisibility(contactForm))
 
 
-contactForm.addEventListener('submit', event  => {
-    event.preventDefault()
-    const { name, email, phone, company, notes, twitter } = contactForm.elements
-    const  contact = {
-		name:  name.value,
-		email:  email.value,
-		phone:  phone.value,
-		company:  company.value,
-		notes:  notes.value,
-		twitter:  twitter.value,
+    contactForm.addEventListener('submit', event  => {
+        event.preventDefault()
+        const { name, email, phone, company, notes, twitter } = contactForm.elements
+        const  contact = {
+		    name:  name.value,
+		    email:  email.value,
+		    phone:  phone.value,
+		    company:  company.value,
+		    notes:  notes.value,
+		    twitter:  twitter.value,
 	}
 
     let  contacts = JSON.parse(storage.getItem('contacts')) || []
@@ -104,12 +99,9 @@ contactForm.addEventListener('submit', event  => {
         contact[parseInt(contactForm.elements.index.value)] = contact
         contactForm.elements.submit.value = "Save Contact"
         toggleFormVisibility(contactForm)
-        debugger
     }
     storage.setItem('contacts', JSON.stringify(contacts))
     renderContacts()
 	contactForm.reset()
    })
 })
-
-
