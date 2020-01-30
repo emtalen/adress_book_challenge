@@ -1,5 +1,5 @@
 describe ('update a contact', () => {
-    before ('by changing the data', () =>{
+    before(() => {
         cy.visit('http://localhost:3001')
         cy.get('#add-contact').click()
         cy.get('#name').type('Emma')
@@ -9,10 +9,14 @@ describe ('update a contact', () => {
         cy.get('#notes').type('Struggling noob coder')
         cy.get('#twitter').type('@emma')
         cy.get('#submit').click()
-        cy.wait(500)
+        
+    })
+    it('by changing data and saving it', () => {
         cy.get('#update-button').click()
-        cy.get('#name').clear()
-        cy.type('Daniel')
-        cy.get('#name').contain('should', 'Daniel')
+        cy.get('#new-contact-form').within(() => {
+            cy.get('#name').clear().type('Daniel')
+            cy.get('#email').clear().type('daniel@mail.com')
+            cy.get('#submit').click()
+        })
     })
 })
