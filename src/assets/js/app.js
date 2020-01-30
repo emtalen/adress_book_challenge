@@ -1,31 +1,47 @@
 const storage = window.localStorage
 
+const deleteContact = (toRemove) => {
+        let newContacts = JSON.parse(storage.getItem('contacts'))
+        newContacts.splice(toRemove, 1);
+        storage.clear()
+    storage.setItem('contacts', JSON.stringify(newContacts))
+    renderContacts()
+}
+
 const renderContacts = () => {
     const contacts = JSON.parse(storage.getItem('contacts'))
-
+   
     let div = document.querySelector('#contact-list')
     if (contacts) {
         div.innerHTML = ''
+        i = 0
         const ul = document.createElement('ul')
         
         contacts.forEach(contact => {
-            let li = document.createElement('li')
+        let  li = document.createElement('li')
 
-            li.innerHTML = `
-            <span>${contact.name}</span> |
-            <span>${contact.email}</span> |
-            <span>${contact.phone}</span> |
-            <span>${contact.company}</span> |
-            <span>${contact.notes}</span> |
-            <span>${contact.twitter}</span> |
-        `
+		li.innerHTML = `
+		  <span>${contact.name}</span> |
+		  <span>${contact.email}</span> |
+          <span>${contact.phone}</span> |
+          <span>${contact.company}</span> |
+          <span>${contact.notes}</span> |
+          <span>${contact.twitter}</span> |
+          <button id="delete-button" onclick=deleteContact('${i}')>Delete</button>
+
+	    `
         ul.appendChild(li)
+
+        i++;
     })
     div.appendChild(ul)
-    } else {
+
+
+    }else {
         div.innerHTML = '<p>You have no contacts in your address book</p>'
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
 	renderContacts()
@@ -54,7 +70,7 @@ contactForm.addEventListener('submit', event  => {
 		phone:  phone.value,
 		company:  company.value,
 		notes:  notes.value,
-		twitter:  twitter.value,
+		twitter:  twitter.value
 	}
 
 	console.log(contact)
