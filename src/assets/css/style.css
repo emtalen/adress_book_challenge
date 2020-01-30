@@ -1,7 +1,107 @@
 body {
     text-align: center;
+    background-color: darkgray;
 }
 
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Bradley Hand";
+    text-align: center;
+    color: blanchedalmond;
 }
+h2 {
+    font-family: "Bradley Hand";
+    color: blanchedalmond;
+}
+#add-contact {
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: bold;
+
+}
+
+#new-contact-form {
+    background-color: seashell;
+    display: block;
+    position: relative;
+    margin-top: 20%;
+    border: 3px;
+    width: 45%;
+    border-style: double;
+    margin: auto; 
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px; 
+    font-family: 'Bradley Hand';
+    font-size: 18px;
+    word-break: break-word;
+    border-radius: 10px;
+
+}
+
+
+.contact-card {
+    background-color: seashell;
+    display: inline-block;
+    position: relative;
+    margin-top: 20%;
+    border: 3px;
+    width: 45%;
+    border-style: double;
+    margin: auto; 
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px; 
+    font-family: 'Bradley Hand';
+    font-size: 18px;
+    word-break: break-word;
+    border-radius: 10px;
+
+}
+input {
+    height: 20px;
+    border-radius: 10px;
+    margin-top: 2%;
+    background-color: white;
+    border-style: inset;
+}
+textarea {
+    margin-top: 2%;
+    border-radius: 10px;
+    border-style: inset;
+    background-color: white;
+}
+
+div {
+    margin: 10px; 
+}
+
+#notes {
+    height: 60px;
+    word-break: break-word;
+    
+}
+
+#update-button {
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    border-radius: 5px;
+    
+
+}
+#delete-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    
+}
+ #submit {
+     background-color: white;
+     font-weight: bold;
+     height: 40px;
+     width: 100px;
+ }
+
+ #contact-name {
+    text-decoration: underline;
+ }
+

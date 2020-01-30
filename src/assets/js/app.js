@@ -23,8 +23,8 @@ const displayUpdateFields = (id) => {
     form.elements.email.value = contactToUpdate.email
     form.elements.phone.value = contactToUpdate.phone
     form.elements.company.value = contactToUpdate.company
-    form.elements.notes.value = contactToUpdate.notes
     form.elements.twitter.value = contactToUpdate.twitter
+    form.elements.notes.value = contactToUpdate.notes
     form.elements.submit.value = "Update Contact"
 }
 
@@ -46,20 +46,21 @@ const renderContacts = () => {
 			newDiv.classList.add("contact-card");
 			newDiv.innerHTML =
 				`
-				<div class="contact-name">${contact.name}</div>
-				<div class="contact-email">${contact.email}</div>
-				<div class="contact-phone">${contact.phone}</div>
-				<div class="contact-company">${contact.company}</div>
-				<div class="contact-notes">${contact.notes}</div>
-				<div class="contact-twitter">@${contact.twitter}</div>
-				<input type="button" value="Update" id="update-button" onclick="updateContact(${i})"/>
-				<input type="button" value="Delete" id="delete-button" onclick="deleteContact(${i})"/>
+				<div id="contact-name">${contact.name}</div>
+				<div id="contact-email">${contact.email}</div>
+				<div id="contact-phone">${contact.phone}</div>
+				<div id="contact-company">${contact.company}</div>
+				<div id="contact-twitter">@${contact.twitter}</div>
+				<div id="contact-notesr">${contact.notes}</div>
+				<button id="update-button" onclick="updateContact(${i})"><i class="far fa-edit"></i></button>
+				<button id="delete-button" onclick="deleteContact(${i})"><i class="fas fa-trash-alt"></i></button>
 				`
 			div.appendChild(newDiv)
-			i++;
+            
+            i++;
 		})
 	} else {
-        div.innerHTML = '<p>You have no contacts in your address book</p>'    
+        div.innerHTML = '<p>You have no contacts in your address book</p>'
     }
 }
 
@@ -73,12 +74,17 @@ const toggleFormVisibility = (contactForm) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 	renderContacts()
-const  contactForm = document.getElementById('new-contact-form')
-    const toggleFormVisibilityButton = document.getElementById('add-contact')
-    contactForm.style.display= 'none'
-
-    toggleFormVisibilityButton.addEventListener('click', toggleFormVisibility(contactForm))
-
+	const  contactForm = document.getElementById('new-contact-form')
+	const  toggleFormVisibilityButton = document.getElementById('add-contact')
+	contactForm.style.display = 'none'
+ 
+	toggleFormVisibilityButton.addEventListener('click', () => {
+		if (contactForm.style.display === '') {
+			contactForm.style.display = 'none'
+		} else {
+			contactForm.style.display = ''
+		}
+	})
 
     contactForm.addEventListener('submit', event  => {
         event.preventDefault()
@@ -88,8 +94,8 @@ const  contactForm = document.getElementById('new-contact-form')
 		    email:  email.value,
 		    phone:  phone.value,
 		    company:  company.value,
-		    notes:  notes.value,
 		    twitter:  twitter.value,
+		    notes:  notes.value,
 	}
 
     let  contacts = JSON.parse(storage.getItem('contacts')) || []
