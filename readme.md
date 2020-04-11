@@ -1,21 +1,30 @@
-## User Stories
 
-...As a user
-To stay in touch with my friends
-I would like to be able to create a contact for them in my address book
+### Authors
+[Emma-Maria Thalen](https://github.com/emtalen)   
 
-...As a user
-In order to contact my friends
-I would like to be able to view a list of my saved contacts
+## Built with
+**Front End:** JavaScript | HTML | CSS  
+**Testing framework:** Cypress  
+**Deployed at:** -
 
-...As a user
-In order to keep my friends' contact details accurate
-I would like to be able to update them when needed
+## The code   
+This is my first project where I connected the dots between HTML, CSS and interacted with Javascript. It is a adress book where the user can add contacts and manage them. 
+
+## Getting started
+### Dependencies  
+* Cypress
+
+### Setup   
+To test this application, fork the repo to your own GitHub account and clone it to your local workspace. </br>
+
+Start the React application and run it on your local host:
+```
+$ yarn start
+```
 
 
-...Creating the project using HTML, CSS and JavaScript and also testing it with Cypress through Yarn. 
+## License  
+[MIT-license](https://en.wikipedia.org/wiki/MIT_License)
 
-... To run project you ned to install Yarn and Cypress and make sure to have node installed. 
-
-## Project problems
-I never managed to make the contact update. I was really trying but after a while settled with just being able to delete. Simply because I did not have the knowledge to complete the project. The styling was a disaster because after hours of struggling with the function the energy and self-confidence was defeted. 
+### Acknowledgement  
+- Material provided by [Craft Academy](https://craftacademy.se)
